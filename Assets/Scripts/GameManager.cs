@@ -1,11 +1,17 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] enemies;
     [SerializeField] private Transform enemySpawnPosition;
+    [SerializeField] private TMP_Text _pointsText;
+    [SerializeField] private GameObject _gameOverPanel;
+    [SerializeField] private GameObject _player;
     private GameObject currentEnemy;
     private int _points = 0;
+    private bool gameOver = false;
 
     void Start()
     {
@@ -27,22 +33,29 @@ public class GameManager : MonoBehaviour
     private void AddPoint()
     {
         _points++;
+        _pointsText.SetText("Points: " + _points);
     }
 
     private void GameOver()
     {
-        Debug.Log("GameOver");
-        Debug.Log("Final points: " + _points);
-        Time.timeScale = 0.0f;
+        _gameOverPanel.SetActive(true);
+        Destroy(_player);
+        gameOver = true;
+    }
+
+    public void RestartClicked()
+    {
+        SceneManager.LoadScene(0);
     }
 
     void Update()
     {
 
-        if (currentEnemy.transform.position.z <= -30)
+        if (currentEnemy != null && currentEnemy.transform.position.z <= -30)
         {
             Destroy(currentEnemy.gameObject);
-            SpawnRandomEnemy();
+            if(!gameOver)
+                SpawnRandomEnemy();
         }
     }
 
