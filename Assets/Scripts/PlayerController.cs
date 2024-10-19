@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform LeftPosition;
     [SerializeField] Transform MiddlePosition;
     [SerializeField] Transform RightPosition;
-    [SerializeField] Rigidbody rb;
     [SerializeField] float moveDuration = 0.5f; // Duration of the movement
     [SerializeField] Ease ease = Ease.InOutQuad;
     [SerializeField] List<GameObject> shapes = new List<GameObject>();
@@ -91,6 +90,7 @@ public class PlayerController : MonoBehaviour
 
     void MoveToPosition(Vector3 targetPosition)
     {
-        rb.DOMove(targetPosition, moveDuration).SetEase(ease);
+        
+        transform.DOMove(targetPosition, moveDuration).SetEase(ease);
     }
 }

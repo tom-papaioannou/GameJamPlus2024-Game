@@ -10,16 +10,12 @@ public class GenericCreatureSpawner : MonoBehaviour
     private void Start()
     {
         _pool = new ObjectPool<GenericCreature>(CreateGenericCreature, OnTakeGenericCreatureFromPool, OnReturnGenericCreatureToPool, OnDestroyGenericCreature, true);
-
     }
 
     private GenericCreature CreateGenericCreature()
     {
-        //Spawn new instance of a projectile
-
+        
         GenericCreature genericCreature = Instantiate(_genericCreaturePrefab, transform.position, Quaternion.identity);
-
-        //Assign the card projectile's pool
 
         genericCreature.SetPool(_pool);
 
@@ -28,10 +24,8 @@ public class GenericCreatureSpawner : MonoBehaviour
 
     private void OnTakeGenericCreatureFromPool(GenericCreature genericCreature)
     {
-
         genericCreature.gameObject.SetActive(true);
 
-        //genericProjectile._particleSystem.Play(true);
     }
 
     private void OnReturnGenericCreatureToPool(GenericCreature genericCreature)
