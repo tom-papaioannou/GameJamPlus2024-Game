@@ -793,10 +793,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawner: {fileID: 762465447}
-  spawnInterval: 5
+  spawnInterval: 4
   xMin: -20
   xMax: 20
-  moveDuration: 1
+  moveDuration: 5
   yStart: -6
   yEnd: 20
 --- !u!1 &959512768
@@ -1193,7 +1193,6 @@ MonoBehaviour:
   LeftPosition: {fileID: 1654793213}
   MiddlePosition: {fileID: 1088366073}
   RightPosition: {fileID: 1969903680}
-  rb: {fileID: 1524624845}
   moveDuration: 0.1
   ease: 28
   shapes:
