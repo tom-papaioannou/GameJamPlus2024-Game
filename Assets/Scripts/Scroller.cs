@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BackgroundScroller : MonoBehaviour
+public class Scroller : MonoBehaviour
 {
     public float moveSpeed = 1f;
 
@@ -8,7 +8,7 @@ public class BackgroundScroller : MonoBehaviour
     {
         transform.Translate(0, 0, -moveSpeed * Time.deltaTime, Space.World);
 
-        if(transform.position.z <= -40.0)
+        if (transform.position.z <= -40.0)
         {
             transform.position = new Vector3(0.0f, 0.0f, 40.0f);
         }
