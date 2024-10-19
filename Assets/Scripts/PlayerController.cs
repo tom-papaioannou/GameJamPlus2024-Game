@@ -2,6 +2,7 @@ using UnityEngine;
 using DG.Tweening;
 using System.Collections.Generic;
 using System;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
@@ -36,6 +37,8 @@ public class PlayerController : MonoBehaviour
         {
             ActivateShape(0);
         }
+
+        AudioManager.Instance.PlayAudio("Ambient");
     }
 
     void OnInteract()
