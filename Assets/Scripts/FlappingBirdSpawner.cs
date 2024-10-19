@@ -14,9 +14,10 @@ public class FlappingBirdSpawner : MonoBehaviour
     public float yEnd = 6f;            // Ending y position (top of screen)
 
     private float screenWidthHalf;
-
+    private float initialInterval;
     void Start()
     {
+        initialInterval = spawnInterval;
         // Start the spawning coroutine
         StartCoroutine(SpawnBirds());
         
@@ -24,11 +25,12 @@ public class FlappingBirdSpawner : MonoBehaviour
 
     IEnumerator SpawnBirds()
     {
-        yield return new WaitForSeconds(spawnInterval);
+        yield return new WaitForEndOfFrame();
 
         while (true)
         {
             SpawnBird();
+            spawnInterval = Random.Range(initialInterval, initialInterval+3);
             yield return new WaitForSeconds(spawnInterval); // Delay before spawning the next bird
         }
     }
