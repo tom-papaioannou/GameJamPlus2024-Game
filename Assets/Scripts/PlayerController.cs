@@ -3,6 +3,8 @@ using DG.Tweening;
 using System.Collections.Generic;
 using System;
 using System.Collections;
+using Unity.Cinemachine;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,8 +16,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float moveDuration = 0.5f; // Duration of the movement
     [SerializeField] Ease ease = Ease.InOutQuad;
     [SerializeField] List<GameObject> shapes = new List<GameObject>();
-
+    [SerializeField] private CinemachineMixingCamera cameraParent;
+    private bool cameraOrtho = true;
+    private float _timeFactor = 1.0f;
+    private int _timeLeft = 5;
+    private int initialTime = 5;
     private int currentShapeIndex = 0;
+    [SerializeField] private GameObject _timePanel;
+    [SerializeField] private TMP_Text _timeText;
 
     private Vector3 _leftPosition;
     private Vector3 _middlePosition;
@@ -41,6 +49,17 @@ public class PlayerController : MonoBehaviour
         AudioManager.Instance.PlayAudio("Ambient");
     }
 
+    private void ChangeCamera()
+    {
+        if (cameraOrtho)
+        {
+            cameraOrtho = !cameraOrtho;
+            DOTween.To(() => cameraParent.Weight0, x => cameraParent.Weight0 = x, 0, 1);
+            DOTween.To(() => cameraParent.Weight1, x => cameraParent.Weight1 = x, 1, 1);
+            StartCoroutine(AdvanceTime());
+        }
+    }
+
     void OnInteract()
     {
         if (shapes.Count == 0) return;
@@ -53,6 +72,26 @@ public class PlayerController : MonoBehaviour
 
         // Activate the new current shape
         ActivateShape(currentShapeIndex);
+    }
+
+    private IEnumerator AdvanceTime()
+    {
+        _timeText.text = _timeLeft.ToString();
+        _timePanel.SetActive(true);
+        while (!cameraOrtho)
+        {
+            yield return new WaitForSeconds(_timeFactor);
+            _timeLeft--;
+            _timeText.text = _timeLeft.ToString();
+            if (_timeLeft <= 0)
+            {
+                _timeLeft = initialTime;
+                cameraOrtho = true;
+            }
+        }
+        _timePanel.SetActive(false);
+        DOTween.To(() => cameraParent.Weight0, x => cameraParent.Weight0 = x, 1, 1);
+        DOTween.To(() => cameraParent.Weight1, x => cameraParent.Weight1 = x, 0, 1);
     }
 
     void ActivateShape(int index)
@@ -137,6 +176,11 @@ public class PlayerController : MonoBehaviour
         else if (other.tag.Equals("Point"))
         {
             OnPlayerGotPoint?.Invoke();
+            Destroy(other.gameObject);
+        }
+        else if (other.tag.Equals("Collectible"))
+        {
+            ChangeCamera();
             Destroy(other.gameObject);
         }
     }
