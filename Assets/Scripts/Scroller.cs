@@ -10,7 +10,7 @@ public class Scroller : MonoBehaviour
 
         if (transform.position.z <= -40.0)
         {
-            transform.position = new Vector3(0.0f, 0.0f, 40.0f);
+            transform.position = new Vector3(0.0f, transform.position.y, 40.0f);
         }
     }
 }

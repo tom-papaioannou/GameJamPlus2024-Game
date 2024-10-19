@@ -1,9 +1,12 @@
 using UnityEngine;
 using DG.Tweening;
 using System.Collections.Generic;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
+    public static Action OnPlayerGotPoint, OnPlayerHitWall;
+
     [SerializeField] Transform LeftPosition;
     [SerializeField] Transform MiddlePosition;
     [SerializeField] Transform RightPosition;
@@ -120,5 +123,18 @@ public class PlayerController : MonoBehaviour
                 }
                 _playerMoving = false;
             });
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag.Equals("Enemy"))
+        {
+            OnPlayerHitWall?.Invoke();
+        }
+        else if (other.tag.Equals("Point"))
+        {
+            OnPlayerGotPoint?.Invoke();
+            Destroy(other.gameObject);
+        }
     }
 }
