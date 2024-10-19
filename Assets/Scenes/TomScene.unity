@@ -252,10 +252,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 5471749772443867484, guid: b532871b042329844ac01ecb032826b9, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 7295645510898497677, guid: b532871b042329844ac01ecb032826b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -296,9 +292,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8817789085782660809, guid: b532871b042329844ac01ecb032826b9, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -6
+    - target: {fileID: 8704716798238437095, guid: b532871b042329844ac01ecb032826b9, type: 3}
+      propertyPath: shapes.Array.size
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -475,6 +471,8 @@ MonoBehaviour:
   enemies:
   - {fileID: 7924343328210017967, guid: c683ac232299f874e91d48197d5922a2, type: 3}
   - {fileID: 5277679560391683737, guid: def57edb958814f47b377deb64a1ca0d, type: 3}
+  - {fileID: 7127680360209346331, guid: e2607e04cf7622e4b8a7a19adfc20fa6, type: 3}
+  - {fileID: 66814364927923488, guid: af112950993581e42aa6282525c8dced, type: 3}
   enemySpawnPosition: {fileID: 1570380942}
 --- !u!1 &1570380941
 GameObject:

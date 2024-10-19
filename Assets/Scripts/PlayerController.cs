@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 _rightPosition;
     private enum Position { Left, Middle, Right }
     private Position currentPosition = Position.Middle;
+    private bool _playerMoving = false;
 
     void Start()
     {
@@ -58,39 +59,66 @@ public class PlayerController : MonoBehaviour
 
     void OnRightMovement()
     {
-        switch (currentPosition)
+        if (!_playerMoving)
         {
-            case Position.Left:
-                currentPosition = Position.Middle;
-                MoveToPosition(_middlePosition);
-                break;
-            case Position.Middle:
-                currentPosition = Position.Right;
-                MoveToPosition(_rightPosition);
-                break;
-                // If already at Right, do nothing
+            _playerMoving = true;
+            switch (currentPosition)
+            {
+                case Position.Left:
+                    currentPosition = Position.Middle;
+                    MoveToPosition(_middlePosition);
+                    break;
+                case Position.Middle:
+                    currentPosition = Position.Right;
+                    MoveToPosition(_rightPosition);
+                    break;
+                case Position.Right:
+                    _playerMoving = false;
+                    break;
+            }
         }
     }
 
     void OnLeftMovement()
     {
-        switch (currentPosition)
+        if (!_playerMoving)
         {
-            case Position.Right:
-                currentPosition = Position.Middle;
-                MoveToPosition(_middlePosition);
-                break;
-            case Position.Middle:
-                currentPosition = Position.Left;
-                MoveToPosition(_leftPosition);
-                break;
-                // If already at Left, do nothing
+            _playerMoving = true;
+            switch (currentPosition)
+            {
+                case Position.Right:
+                    currentPosition = Position.Middle;
+                    MoveToPosition(_middlePosition);
+                    break;
+                case Position.Middle:
+                    currentPosition = Position.Left;
+                    MoveToPosition(_leftPosition);
+                    break;
+                case Position.Left:
+                    _playerMoving = false;
+                    break;
+            }
         }
     }
 
     void MoveToPosition(Vector3 targetPosition)
     {
-        
-        transform.DOMove(targetPosition, moveDuration).SetEase(ease);
+        transform.DOMove(targetPosition, moveDuration).SetEase(ease).OnComplete(
+            () =>
+            {
+                switch (currentPosition)
+                {
+                    case Position.Left:
+                        transform.position = new Vector3(-6.0f, transform.position.y, transform.position.z);
+                        break;
+                    case Position.Middle:
+                        transform.position = new Vector3(0.0f, transform.position.y, transform.position.z);
+                        break;
+                    case Position.Right:
+                        transform.position = new Vector3(6.0f, transform.position.y, transform.position.z);
+                        break;
+                }
+                _playerMoving = false;
+            });
     }
 }
