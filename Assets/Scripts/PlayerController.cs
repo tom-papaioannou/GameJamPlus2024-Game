@@ -1,5 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
+using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Rigidbody rb;
     [SerializeField] float moveDuration = 0.5f; // Duration of the movement
     [SerializeField] Ease ease = Ease.InOutQuad;
+    [SerializeField] List<GameObject> shapes = new List<GameObject>();
+
+    private int currentShapeIndex = 0;
 
     private Vector3 _leftPosition;
     private Vector3 _middlePosition;
@@ -23,6 +27,34 @@ public class PlayerController : MonoBehaviour
         _rightPosition = RightPosition.position;
         // Ensure the player starts at the middle position
         transform.position = _middlePosition;
+
+        // Initialize shapes
+        if (shapes.Count > 0)
+        {
+            ActivateShape(0);
+        }
+    }
+
+    void OnInteract()
+    {
+        if (shapes.Count == 0) return;
+
+        // Deactivate the current shape
+        shapes[currentShapeIndex].SetActive(false);
+
+        // Move to the next shape
+        currentShapeIndex = (currentShapeIndex + 1) % shapes.Count;
+
+        // Activate the new current shape
+        ActivateShape(currentShapeIndex);
+    }
+
+    void ActivateShape(int index)
+    {
+        for (int i = 0; i < shapes.Count; i++)
+        {
+            shapes[i].SetActive(i == index);
+        }
     }
 
     void OnRightMovement()
