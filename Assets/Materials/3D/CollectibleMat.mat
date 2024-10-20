@@ -53,7 +53,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _GradientMap:
-        m_Texture: {fileID: 2800000, guid: 0609c019401e1c841b3dafa0c96ecea8, type: 3}
+        m_Texture: {fileID: 2800000, guid: bc54b743e078f71498324593f98729ad, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -99,7 +99,7 @@ Material:
     - _AlphaOutsideControl: 0
     - _AlphaToMask: 0
     - _Banding: 0
-    - _Bands: 3
+    - _Bands: 16
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
@@ -124,7 +124,7 @@ Material:
     - _GlossyReflections: 0
     - _Glow: 1
     - _InnerRadius: 0
-    - _IntersectionThresholdMax: 1
+    - _IntersectionThresholdMax: 0
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _OuterRadius: 0.5
@@ -160,7 +160,7 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 0.8666878, b: 0, a: 1}
     - _BurnCol: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1.2311444, g: 1.0670178, b: 0, a: 1}
+    - _Color: {r: 5.216475, g: 4.521055, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 1, g: 1, b: 1, a: 1}
     - _PanningSpeed: {r: 0, g: 0, b: 0, a: 0}
