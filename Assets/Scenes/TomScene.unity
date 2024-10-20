@@ -659,7 +659,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8704716798238437095, guid: b532871b042329844ac01ecb032826b9, type: 3}
       propertyPath: ease
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8704716798238437095, guid: b532871b042329844ac01ecb032826b9, type: 3}
       propertyPath: _timeText

@@ -109,7 +109,6 @@ public class PlayerController : MonoBehaviour
     {
         if (!_playerMoving)
         {
-            _playerMoving = true;
             switch (currentPosition)
             {
                 case Position.Left:
@@ -121,7 +120,6 @@ public class PlayerController : MonoBehaviour
                     MoveToPosition(_rightPosition);
                     break;
                 case Position.Right:
-                    _playerMoving = false;
                     break;
             }
         }
@@ -131,7 +129,6 @@ public class PlayerController : MonoBehaviour
     {
         if (!_playerMoving)
         {
-            _playerMoving = true;
             switch (currentPosition)
             {
                 case Position.Right:
@@ -143,7 +140,6 @@ public class PlayerController : MonoBehaviour
                     MoveToPosition(_leftPosition);
                     break;
                 case Position.Left:
-                    _playerMoving = false;
                     break;
             }
         }
@@ -151,11 +147,17 @@ public class PlayerController : MonoBehaviour
 
     void MoveToPosition(Vector3 targetPosition)
     {
-        transform.DOMove(targetPosition, moveDuration)
+        _playerMoving = true;
+
+        Sequence seq = DOTween.Sequence();
+        seq.Append(transform.DOMove(targetPosition, moveDuration)
              .SetEase(ease)
              .SetOptions(true) // This forces the tween to snap to the final values
              .OnComplete(() => CorrectFinalPosition())
-             .OnKill(() => CorrectFinalPosition()); // Ensures the position is set even if the tween is interrupted
+             .OnKill(() => CorrectFinalPosition()));
+        seq.AppendInterval(0.01f);
+        seq.AppendCallback(() => _playerMoving = false);
+        seq.Play();
     }
 
     void CorrectFinalPosition()
@@ -177,7 +179,6 @@ public class PlayerController : MonoBehaviour
 
         // Directly set the X position to ensure precision
         transform.position = new Vector3(targetX, targetY, targetZ);
-        _playerMoving = false;
     }
 
     void Update()
