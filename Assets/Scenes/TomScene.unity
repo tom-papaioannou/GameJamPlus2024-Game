@@ -360,6 +360,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!20 &486255980 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 2998451586059217869, guid: 18bb0807bb3a94946993abb4f0bb0b7d, type: 3}
+  m_PrefabInstance: {fileID: 1948655228582007496}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &543461097
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -497,6 +502,10 @@ PrefabInstance:
       propertyPath: cameraParent
       value: 
       objectReference: {fileID: 322330879}
+    - target: {fileID: 8704716798238437095, guid: b532871b042329844ac01ecb032826b9, type: 3}
+      propertyPath: mainShaderCamera
+      value: 
+      objectReference: {fileID: 486255980}
     - target: {fileID: 8704716798238437095, guid: b532871b042329844ac01ecb032826b9, type: 3}
       propertyPath: shapes.Array.size
       value: 2
@@ -1036,7 +1045,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &1932680321
 AudioListener:
   m_ObjectHideFlags: 0

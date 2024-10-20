@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Ease ease = Ease.InOutQuad;
     [SerializeField] List<GameObject> shapes = new List<GameObject>();
     [SerializeField] private CinemachineMixingCamera cameraParent;
+    [SerializeField] private Camera mainShaderCamera;
     private bool cameraOrtho = true;
     private float _timeFactor = 1.0f;
     private int _timeLeft = 5;
@@ -54,6 +55,7 @@ public class PlayerController : MonoBehaviour
         if (cameraOrtho)
         {
             cameraOrtho = !cameraOrtho;
+            mainShaderCamera.orthographic = false;
             DOTween.To(() => cameraParent.Weight0, x => cameraParent.Weight0 = x, 0, 1);
             DOTween.To(() => cameraParent.Weight1, x => cameraParent.Weight1 = x, 1, 1);
             StartCoroutine(AdvanceTime());
@@ -92,6 +94,7 @@ public class PlayerController : MonoBehaviour
         _timePanel.SetActive(false);
         DOTween.To(() => cameraParent.Weight0, x => cameraParent.Weight0 = x, 1, 1);
         DOTween.To(() => cameraParent.Weight1, x => cameraParent.Weight1 = x, 0, 1);
+        mainShaderCamera.orthographic = true;
     }
 
     void ActivateShape(int index)
