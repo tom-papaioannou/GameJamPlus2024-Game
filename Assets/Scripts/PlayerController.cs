@@ -151,29 +151,62 @@ public class PlayerController : MonoBehaviour
 
     void MoveToPosition(Vector3 targetPosition)
     {
-        transform.DOMove(targetPosition, moveDuration).SetEase(ease).OnComplete(
-            () =>
+        transform.DOMove(targetPosition, moveDuration)
+             .SetEase(ease)
+             .SetOptions(true) // This forces the tween to snap to the final values
+             .OnComplete(() => CorrectFinalPosition())
+             .OnKill(() => CorrectFinalPosition()); // Ensures the position is set even if the tween is interrupted
+    }
+
+    void CorrectFinalPosition()
+    {
+        // Snap the player exactly to the target position based on the current position
+        int targetX = 0, targetY = 1, targetZ = -7;
+        switch (currentPosition)
+        {
+            case Position.Left:
+                targetX = -6;
+                break;
+            case Position.Middle:
+                targetX = 0;
+                break;
+            case Position.Right:
+                targetX = 6;
+                break;
+        }
+
+        // Directly set the X position to ensure precision
+        transform.position = new Vector3(targetX, targetY, targetZ);
+        _playerMoving = false;
+    }
+
+    void Update()
+    {
+        if (!_playerMoving)
+        {
+            // Get the current x position
+            float xPosition = transform.position.x;
+
+            // Find the closest value (-6, 0, or 6)
+            float closestX = Mathf.Round(xPosition / 6) * 6;
+
+            // If the closest value is outside the range, set it to 0
+            if (Mathf.Abs(closestX) > 6)
             {
-                switch (currentPosition)
-                {
-                    case Position.Left:
-                        transform.position = new Vector3(-6.0f, transform.position.y, transform.position.z);
-                        break;
-                    case Position.Middle:
-                        transform.position = new Vector3(0.0f, transform.position.y, transform.position.z);
-                        break;
-                    case Position.Right:
-                        transform.position = new Vector3(6.0f, transform.position.y, transform.position.z);
-                        break;
-                }
-                _playerMoving = false;
-            });
+                closestX = 0;
+            }
+
+            // Lock the x position to the closest value
+            transform.position = new Vector3(closestX, transform.position.y, transform.position.z);
+        }
+        
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag.Equals("Enemy"))
         {
+            AudioManager.Instance.PlayAudio("WallCrash");
             OnPlayerHitWall?.Invoke();
         }
         else if (other.tag.Equals("Point"))
@@ -183,6 +216,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.tag.Equals("Collectible"))
         {
+            AudioManager.Instance.PlayAudio("Collectible");
             _timeLeft = initialTime;
             _timeText.text = _timeLeft.ToString();
             ChangeCamera();
