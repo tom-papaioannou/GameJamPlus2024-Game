@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     {
         _points++;
         _pointsText.SetText("Points: " + _points);
+        GameData.Instance.objectSpeed++;
     }
 
     private void GameOver()
@@ -46,6 +47,11 @@ public class GameManager : MonoBehaviour
     public void RestartClicked()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void ExitClicked()
+    {
+        Application.Quit();
     }
 
     void Update()

@@ -4,6 +4,11 @@ public class Scroller : MonoBehaviour
 {
     public float moveSpeed = 1f;
 
+    private void Start()
+    {
+        moveSpeed = GameData.Instance.objectSpeed;
+    }
+
     void Update()
     {
         transform.Translate(0, 0, -moveSpeed * Time.deltaTime, Space.World);

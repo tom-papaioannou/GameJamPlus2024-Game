@@ -20,8 +20,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Camera mainShaderCamera;
     private bool cameraOrtho = true;
     private float _timeFactor = 1.0f;
-    private int _timeLeft = 5;
-    private int initialTime = 5;
+    private int _timeLeft = 9;
+    private int initialTime = 9;
     private int currentShapeIndex = 0;
     [SerializeField] private GameObject _timePanel;
     [SerializeField] private TMP_Text _timeText;
