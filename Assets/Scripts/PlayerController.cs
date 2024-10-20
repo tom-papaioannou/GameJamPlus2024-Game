@@ -191,10 +191,10 @@ public class PlayerController : MonoBehaviour
             float closestX = Mathf.Round(xPosition / 6) * 6;
 
             // If the closest value is outside the range, set it to 0
-            if (Mathf.Abs(closestX) > 6)
-            {
-                closestX = 0;
-            }
+            //if (Mathf.Abs(closestX) > 6)
+            //{
+            //    closestX = 0;
+            //}
 
             // Lock the x position to the closest value
             transform.position = new Vector3(closestX, transform.position.y, transform.position.z);
