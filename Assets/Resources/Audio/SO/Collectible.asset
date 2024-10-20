@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dced510c6034dd04482c85ae513bb04b, type: 3}
-  m_Name: WallCrash
+  m_Name: Collectible
   m_EditorClassIdentifier: 
-  audioName: WallCrash
-  refName: WallCrash
-  audioClip: {fileID: 8300000, guid: 132b39b27fb981e40a963c7b2c3f2e2d, type: 3}
+  audioName: Collectible
+  refName: Collectible
+  audioClip: {fileID: 8300000, guid: 6ff92694cc6a92b48a10f39a90567b0f, type: 3}
   volume: 1
   pitch: 1
   loop: 0
