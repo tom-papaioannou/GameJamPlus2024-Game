@@ -46,7 +46,7 @@ public class FlappingBirdSpawner : MonoBehaviour
         // Instantiate the bird
         GenericCreature bird = _spawner._pool.Get();
         bird.transform.position = spawnPosition;
-
+        bird.transform.localEulerAngles = new Vector3(90, 0, 0);
         // Move the bird using DOTween from bottom to top of the screen
         MoveBird(bird.gameObject);
     }
@@ -54,7 +54,7 @@ public class FlappingBirdSpawner : MonoBehaviour
     void MoveBird(GameObject bird)
     {
         // Move the bird to the top of the screen (yEnd) over a duration
-        bird.transform.DOMoveY(yEnd, moveDuration).SetEase(Ease.Linear).OnComplete(() =>
+        bird.transform.DOMoveZ(yEnd, moveDuration).SetEase(Ease.Linear).OnComplete(() =>
         {
             Destroy(bird); // Destroy the bird once it reaches the top of the screen
         });
