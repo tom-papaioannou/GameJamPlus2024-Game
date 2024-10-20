@@ -11,7 +11,11 @@ Material:
   m_Shader: {fileID: 4800000, guid: f0f256416c6782e439e90d68697bf571, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - BANDING
+  - CARTOON_EFFECT
+  - COMIC_STYLE
+  - PAINTERLY_FILTERING
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -45,7 +49,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DitherTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: b1bfe0eb29f567848893dcd7bb198cfe, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
@@ -53,15 +57,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _GradientMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 1e8c6b6953a1b534484625242360d3f7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _HatchingTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 1b14745d5c4c8da4fb49232e92eccbda, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 8400000, guid: 7287685e320b3e343b1b1e1d9ac6fbbd, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -69,7 +73,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NoiseMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 0fff0ea7fa1adb447bfba45aa47971b6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -101,48 +105,48 @@ Material:
     - _AddPrecomputedVelocity: 0
     - _AlphaClip: 0
     - _AlphaToMask: 0
-    - _Banding: 0
-    - _Bands: 3
+    - _Banding: 1
+    - _Bands: 32
     - _BayerDithering: 0
-    - _BilateralRadius: 1
-    - _BilateralSigma: 1
-    - _BilateralSigma2: 1
+    - _BilateralRadius: 2
+    - _BilateralSigma: 10
+    - _BilateralSigma2: 0.1
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
-    - _BrightnessAdjustment: 0.8
+    - _BrightnessAdjustment: 0.84
     - _BumpScale: 1
-    - _CartoonEffect: 0
+    - _CartoonEffect: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _ComicStyle: 0
+    - _ComicStyle: 1
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _DiscardThreshold: 0.1
-    - _DitherStrength: 0.1
+    - _DiscardThreshold: 0.15
+    - _DitherStrength: 0.08
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _HatchingExtension: 0.1
-    - _HatchingIntensity: 0.1
-    - _HatchingScale: 0.1
+    - _HatchingExtension: 0.38
+    - _HatchingIntensity: 0.85
+    - _HatchingScale: 1
     - _HatchingThickness: 0.1
     - _HatchingThreshold: 0.1
     - _HatchingToneDownThreshold: 0.9
-    - _MatchingThreshold: 0.1
+    - _MatchingThreshold: 0
     - _Metallic: 0
-    - _NoiseScale: 10
+    - _NoiseScale: -0.42
     - _OcclusionStrength: 1
-    - _OutlineSoftness: 0.1
+    - _OutlineSoftness: 28.81
     - _OutlineThickness: 0.1
-    - _PainterlyBrushSize: 0.1
-    - _PainterlyColorVariation: 1
-    - _PainterlyEdgeThreshold: 0.1
-    - _PainterlyFiltering: 0
+    - _PainterlyBrushSize: 0.31
+    - _PainterlyColorVariation: 27.64
+    - _PainterlyEdgeThreshold: 0.93
+    - _PainterlyFiltering: 1
     - _PaletteBlacksDitheringThreshold: 0.3
     - _PaletteSize: 32
     - _Parallax: 0.005
@@ -150,13 +154,13 @@ Material:
     - _ReceiveShadows: 1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
-    - _SobelKernelSize: 0.1
+    - _SobelKernelSize: 0.84
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
-    - _ToneDownStrength: 0.1
-    - _ToneDownThreshold: 0.8
+    - _ToneDownStrength: 0.14
+    - _ToneDownThreshold: 0.9
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
