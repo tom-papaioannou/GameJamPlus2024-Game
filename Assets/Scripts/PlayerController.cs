@@ -183,6 +183,8 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.tag.Equals("Collectible"))
         {
+            _timeLeft = initialTime;
+            _timeText.text = _timeLeft.ToString();
             ChangeCamera();
             Destroy(other.gameObject);
         }
